@@ -1,0 +1,21 @@
+#attendance:
+#    resource: "@AttendanceBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+
+#current_attendance:
+#    resource: "@CurrentAttendanceBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+
+user:
+    resource: "@UserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+logout:
+    path: /logout
