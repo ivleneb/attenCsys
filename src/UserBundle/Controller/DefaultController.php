@@ -57,6 +57,9 @@ class DefaultController extends Controller
         		$newReg->setEntry($currentAtt->getCurrententry());
         		$newReg->setDepart($currentAtt->getCurrentdepart());
 
+
+                
+                    
         		$em->persist($newReg);
         		$em->flush();
 
@@ -81,12 +84,6 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery('SELECT r FROM UserBundle:Regattendance r ORDER BY r.id DESC');
         $register = $query->getResult();
-    	//$register = $this->getDoctrine()->getRepository('UserBundle:Regattendance')->findAll(array('id'=>'ASC'));
-        /*if ($type=='user') {
-            return $this->render('UserBundle:Default:registrationU.html.twig',array('registers'=>$register, 'type'=>$type)); 
-        } elseif ($type=='admin') {
-            return $this->render('UserBundle:Default:registrationA.html.twig',array('registers'=>$register, 'type'=>$type));
-        } */
         return $this->render('UserBundle:Default:allregisters.html.twig',array('registers'=>$register)); 
     }
 
@@ -97,11 +94,6 @@ class DefaultController extends Controller
     public function currentregAction()
     {
         $current = $this->getDoctrine()->getRepository('UserBundle:Currentattendance')->findAll();
-        /*if ($type=='user') {
-            return $this->render('UserBundle:Default:currentU.html.twig', array('currentReg'=>$current, 'type'=>$type));
-        } elseif ($type=='admin') {
-            return $this->render('UserBundle:Default:currentA.html.twig', array('currentReg'=>$current, 'type'=>$type));
-        }	*/
         return $this->render('UserBundle:Default:current.html.twig', array('currentReg'=>$current));
     }
 

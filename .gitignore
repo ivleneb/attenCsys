@@ -12,6 +12,7 @@
 /var/sessions/*
 !var/sessions/.gitkeep
 !var/SymfonyRequirements.php
+#Next line included for developer
 !var/bootstrap.php.cache
 #/vendor/
 /web/bundles/
