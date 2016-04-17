@@ -22,9 +22,10 @@
 					<tr>
 						<th>Username</th>
 						<th>Name</th>
+						<th>Email</th>
 						<th>Entry Time</th>
 						<th>Depart Time</th>
-						<th>Email</th>
+						<th>Difference</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -32,9 +33,10 @@
 						<tr>
 							<td>{{ register.username }}</td>
 							<td>{{ register.name }}</td>
+							<td>{{ register.email }}</td>
 							<td>{{ register.entry|date('d-m-Y H:i') }}</td>
 							<td>{{ register.depart|date('d-m-Y H:i') }}</td>
-							<td>{{ register.email }}</td>
+							<td>{{ register.difference }}</td>
 							<td>
 								{#{% if user.role == 'ROLE_ADMIN' %}
 									<strong>Administartor</strong>

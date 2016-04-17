@@ -12,6 +12,16 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Regattendance
 {
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
     /**
      * @var string
      *
@@ -25,13 +35,6 @@ class Regattendance
      * @ORM\Column(name="name", type="text", length=65535, nullable=false)
      */
     private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="uid", type="text", length=65535, nullable=false)
-     */
-    private $uid;
 
     /**
      * @ORM\Column(type="string", length=60)
@@ -53,13 +56,19 @@ class Regattendance
     private $depart;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(type="string", length=60)
      */
-    private $id;
+    private $difference;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set username
@@ -86,27 +95,51 @@ class Regattendance
     }
 
     /**
-     * Set uid
+     * Set name
      *
-     * @param string $uid
+     * @param string $name
      *
      * @return Regattendance
      */
-    public function setUid($uid)
+    public function setName($name)
     {
-        $this->uid = $uid;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get uid
+     * Get name
      *
      * @return string
      */
-    public function getUid()
+    public function getName()
     {
-        return $this->uid;
+        return $this->name;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Regattendance
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 
     /**
@@ -158,60 +191,26 @@ class Regattendance
     }
 
     /**
-     * Get id
+     * Set difference
      *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
+     * @param string $difference
      *
      * @return Regattendance
      */
-    public function setName($name)
+    public function setDifference($difference)
     {
-        $this->name = $name;
+        $this->difference = $difference;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get difference
      *
      * @return string
      */
-    public function getName()
+    public function getDifference()
     {
-        return $this->name;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return Regattendance
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
+        return $this->difference;
     }
 }

@@ -115,6 +115,30 @@ class Users implements UserInterface, \Serializable
     }
 
     /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Users
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
      * Set password
      *
      * @param string $password

@@ -21,7 +21,7 @@ class DefaultController extends Controller
         if (!$user) {
         	return new Response("Not found user with uid: ".$uid);
         }else{
-        	$currentAtt = $this->getDoctrine()->getRepository('UserBundle:Currentattendance')->findOneBy(array('uidtag'=>$user->getUid()));
+        	$currentAtt = $this->getDoctrine()->getRepository('UserBundle:Currentattendance')->findOneBy(array('email'=>$user->getEmail()));
 
         	$time = new \DateTime();
 
@@ -31,12 +31,11 @@ class DefaultController extends Controller
         		$currentAtt = new Currentattendance();
         		$currentAtt->setUsername($user->getUsername());
                 $currentAtt->setName($user->getName());
-        		$currentAtt->setUidtag($user->getUid());
+                $currentAtt->setEmail($user->getEmail());
         		$currentAtt->setCurrententry($time);
         		$em=$this->getDoctrine()->getManager();
         		$em->persist($currentAtt);
         		$em->flush();
-
 
         	} elseif ($currentAtt->getCurrentdepart() == NULL) {
         		//Set depart time
@@ -50,19 +49,15 @@ class DefaultController extends Controller
         		$em=$this->getDoctrine()->getManager();
 
         		$newReg = new Regattendance();
-        		$newReg->setUsername($currentAtt->getUsername());
-                $newReg->setName($currentAtt->getName());
+        		$newReg->setUsername($user->getUsername());
+                $newReg->setName($user->getName());
                 $newReg->setEmail($user->getEmail());
-        		$newReg->setUid($currentAtt->getUidtag());
         		$newReg->setEntry($currentAtt->getCurrententry());
         		$newReg->setDepart($currentAtt->getCurrentdepart());
-
-
-                
+                $newReg->setDifference(date_diff($newReg->getDepart(), $newReg->getEntry())->format('%h:%i'));
                     
         		$em->persist($newReg);
         		$em->flush();
-
 
         		$currentAtt->setCurrententry($time);
         		$currentAtt->setCurrentdepart(NULL);
@@ -70,7 +65,6 @@ class DefaultController extends Controller
         		$em->flush();
         	}
         		
-        	
         	return new Response($saludo." user ".$user->getUsername());
         }
 
@@ -84,6 +78,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery('SELECT r FROM UserBundle:Regattendance r ORDER BY r.id DESC');
         $register = $query->getResult();
+
         return $this->render('UserBundle:Default:allregisters.html.twig',array('registers'=>$register)); 
     }
 
@@ -94,6 +89,7 @@ class DefaultController extends Controller
     public function currentregAction()
     {
         $current = $this->getDoctrine()->getRepository('UserBundle:Currentattendance')->findAll();
+
         return $this->render('UserBundle:Default:current.html.twig', array('currentReg'=>$current));
     }
 
