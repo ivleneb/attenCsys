@@ -63,7 +63,10 @@ class DefaultController extends Controller
                 $departH = intval($newReg->getDepart()->format('%h'));
                 $departM = intval($newReg->getDepart()->format('%i'));
 
-                $newReg->setDifference($diff->format('%h:%i'));
+                $newReg->setDifference($diff->format('%h:%i')); 
+                    
+        		$em->persist($newReg);
+        		$em->flush();
 
                 if (($diffMin > 7*60+20) or ($diffMin < 3*60-5) or (($entryH*60+$entryM)>12*60 and ($entryH*60+$entryM)<14*60)) {
                     
@@ -89,10 +92,8 @@ class DefaultController extends Controller
                     } elseif (($entryH*60+$entryM)>12*60 and ($entryH*60+$entryM)<14*60) {
                         $saludo  = "aaa";
                     } */
-                } 
-                    
-        		$em->persist($newReg);
-        		$em->flush();
+                }
+
                
         		$currentAtt->setCurrententry($time);
         		$currentAtt->setCurrentdepart(NULL);
