@@ -92,7 +92,7 @@ class DefaultController extends Controller
                     } elseif (($entryH*60+$entryM)>12*60 and ($entryH*60+$entryM)<14*60) {
                         $saludo  = "aaa";
                     } */
-                }
+                //}
 
                
         		$currentAtt->setCurrententry($time);
