@@ -68,7 +68,7 @@ class DefaultController extends Controller
         		$em->persist($newReg);
         		$em->flush();
 
-                if (($diffMin > 7*60+20) or ($diffMin < 3*60-5) or (($entryH*60+$entryM)>12*60 and ($entryH*60+$entryM)<14*60)) {
+               /* if (($diffMin > 7*60+20) or ($diffMin < 3*60-5) or (($entryH*60+$entryM)>12*60 and ($entryH*60+$entryM)<14*60)) {
                     
                     $message = \Swift_Message::newInstance()
                         ->setSubject('Alert: POSSIBLE ATTENDANCE INFRACTION')
