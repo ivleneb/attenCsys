@@ -25,23 +25,26 @@
 						<th>Email</th>
 						<th>Entry Time</th>
 						<th>Depart Time</th>
-						<th>Difference</th>
+						<th>Difference(H:m)</th>
 					</tr>
 				</thead>
 				<tbody>
 					{% for register in registers %}
+						{% set diffMin = (register.difference|date('H'))*60+register.difference|date('i') %}
+						{% set entryInMin = (register.entry|date('H'))*60+register.entry|date('i') %}
+						{% set departInMin = (register.depart|date('H'))*60+register.depart|date('i') %}
+						{% if  diffMin> 7*60+20 or diffMin < 3*60-5 or (entryInMin > 12*60 and entryInMin < 14*60) %}
+							{% set mark = 'danger' %}
+						{% else %}
+							{% set mark = '' %}	    
+						{% endif %}
 						<tr>
-							<td>{{ register.username }}</td>
-							<td>{{ register.name }}</td>
-							<td>{{ register.email }}</td>
-							<td>{{ register.entry|date('d-m-Y H:i') }}</td>
-							<td>{{ register.depart|date('d-m-Y H:i') }}</td>
-							<td>{{ register.difference }}</td>
-								{#{% if user.role == 'ROLE_ADMIN' %}
-									<strong>Administartor</strong>
-								{% elseif user.role == 'ROLE_USER' %}
-									<strong>User</strong>
-								{% endif %}#}
+							<td class="{{ mark }}">{{ register.username }}</td>
+							<td class="{{ mark }}">{{ register.name }}</td>
+							<td class="{{ mark }}">{{ register.email }}</td>
+							<td class="{{ mark }}">{{ register.entry|date('d-m-Y H:i') }}</td>
+							<td class="{{ mark }}">{{ register.depart|date('d-m-Y H:i') }}</td>
+							<td class="{{ mark }}">{{ register.difference }}</td>
 							<td>
 								<a href="#" class="btn btn-sm btn-info">View</a>
 								{% if is_granted('ROLE_ADMIN') %}

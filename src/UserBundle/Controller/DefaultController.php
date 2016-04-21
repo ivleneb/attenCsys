@@ -56,12 +56,12 @@ class DefaultController extends Controller
         		$newReg->setDepart($currentAtt->getCurrentdepart());
 
                 $diff = date_diff($newReg->getDepart(), $newReg->getEntry());
-                $diffMin = ($diff->h)*60+($diff->i); 
+                /*$diffMin = ($diff->h)*60+($diff->i); 
 
                 $entryH = intval($newReg->getEntry()->format('%h'));
                 $entryM = intval($newReg->getEntry()->format('%i'));
                 $departH = intval($newReg->getDepart()->format('%h'));
-                $departM = intval($newReg->getDepart()->format('%i'));
+                $departM = intval($newReg->getDepart()->format('%i'));*/
 
                 $newReg->setDifference($diff->format('%h:%i')); 
                     
