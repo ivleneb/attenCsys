@@ -27,7 +27,7 @@ class DefaultController extends Controller
 
         	if (!$currentAtt) {
         		//New entry For an user Entry
-        		$saludo = "Hello";
+        		$saludo = "@Hello@";
         		$currentAtt = new Currentattendance();
         		$currentAtt->setUsername($user->getUsername());
                 $currentAtt->setName($user->getName());
@@ -39,13 +39,13 @@ class DefaultController extends Controller
 
         	} elseif ($currentAtt->getCurrentdepart() == NULL) {
         		//Set depart time
-        		$saludo = "Bye";
+        		$saludo = "@Bye@";
         		$em=$this->getDoctrine()->getManager();
         		$currentAtt->setCurrentdepart($time);
         		$em->flush();
         	}elseif ($currentAtt->getCurrentdepart() != NULL) {
         		//Reset entry time
-        		$saludo = "Hello";
+        		$saludo = "@Hello@";
         		$em=$this->getDoctrine()->getManager();
 
         		$newReg = new Regattendance();
