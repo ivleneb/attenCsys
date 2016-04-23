@@ -10,12 +10,6 @@
 {% if error %}
     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
-<style type="text/css">
-    .rock{
-        font-family: 'New Rocker', cursive;
-        font-size: 7em;
-    }
-</style>
 <div class="image-container col-xs-6 col-md-6" style="height: 100vh;">
     <img src="{{ asset('river2.png') }}" height="120%">
 </div>
@@ -23,7 +17,7 @@
     <figure>
         <img src="{{ asset('Gota_Waposat_117x147.png') }}">
         <figcaption style="margin-left: 20%;margin-right: 20%;">
-            <h2 class="rock azulwapo">LogIn</h2>
+            <h2 class="rock bigFont azulwapo">LogIn</h2>
             <h3>To mark your attendance just type your data or passes your card</h3>
         </figcaption>
     </figure>
@@ -38,7 +32,7 @@
             <label for="password" class="col-sm-2 control-label">Password:</label>
             <input type="password" class="form-control" id="password" name="_password" />   
         </div>
-        <input type="hidden" name="_target_path" value="currentPage" />
+        <input type="hidden" name="_target_path" value="homePage" />
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-default">login</button>

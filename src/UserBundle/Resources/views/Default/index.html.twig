@@ -1,13 +1,51 @@
 {% extends 'base.html.twig' %}
 
+
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/style.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=New+Rocker' rel='stylesheet' type='text/css'>
+{% endblock %}
+
 {% block body %}
     {{ parent() }}
-	<div class="carousel-inner text-vertical-center">
-		<img src="{{ asset('river2.png') }}" class="img-circle" alt="Responsive image" style="max-width: 50%;">
-		<div class="carousel-caption">
-			<h1 class="pacifico title1">WAPOSAT</h1> 
-			<h2>Safe water 24 Hrs of day</h2>
-			<button type="button" class="btn"><a href="#">Descubre más</a></button>			
-		</div>
-	</div> 
+
+{% if app.session.flashBag.has('success') %}
+    <div class="alert alert-success">
+        {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+        {% endfor %}
+    </div>
+{% endif %}
+
+	<header class="header">
+		<h1 class="rock midFont">Welcome to WAPOSAT Attendance System</h1> 
+	</header>
+	<section>
+		<h2>About WAPOSAT Attendance System</h2>
+ 		<article>
+ 			<h3>How to use the System</h3>
+ 			<ul>
+ 				<li>Mark your attendance</li>
+ 				<li>Verify your attendance</li>
+ 				<li>LECTORUINO</li>
+ 				<li>Some CONSIDERATIONS of the system</li>
+ 			</ul>
+ 		</article>
+	</section>
+	<aside>
+		<h2>Click here!</h2>
+		<ul class="list-unstyled tag-cloud">
+			<li><a href="{{ path('registerPage') }}">Check All Attendance Registers</a></li>
+			<li><a href="{{ path('currentPage') }}">Check who is in the office</a></li>
+			<li><a href="#">Add new users</a></li>
+		</ul>
+		<figure class="carousel-inner text-vertical-center">
+			<img src="{{ asset('river2.png') }}" class="img-circle" alt="Responsive image" style="max-width: 30%;">
+			<figcaption><button type="button" class="btn"><a href="http://waposat.com">Descubre más</a></button></figcaption>
+		</figure>
+	</aside>
+	<footer>
+   		<p>©2016 BGL soft inc.</p>
+	</footer>
 {% endblock %}

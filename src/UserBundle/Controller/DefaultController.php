@@ -4,6 +4,7 @@ namespace UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
 use UserBundle\Entity\Currentattendance;
 use UserBundle\Entity\Users;
@@ -106,6 +107,15 @@ class DefaultController extends Controller
 
     }
 
+
+    /**
+     * @Route("/userarea/home", name="homePage")
+     */
+    public function home()
+    {
+        return $this->render('UserBundle:Default:index.html.twig');
+    }
+
     /**
      * @Route("/userarea/register", name="registerPage")
      */
@@ -143,6 +153,42 @@ class DefaultController extends Controller
     public function editregisterAction($type)
     {
 
+    }
+
+    /**
+     * @Route("/userarea/deleteregister/{id}", name="deleteRegister")
+     * @Method("POST")
+     */
+    public function deleteRegAction($id)
+    {
+        $register = $this->getDoctrine()->getRepository('UserBundle:Regattendance')->findOneBy(array('id'=>$id));
+        if (!$register) {
+            return new Response("Not found user");
+        } else {
+            $em=$this->getDoctrine()->getManager();
+            $em->remove($register);
+            $em->flush();
+
+            return $this->redirectToRoute('registerPage');
+        }
+    }
+
+    /**
+     * @Route("/userarea/deletecurrentregister/{id}", name="deleteCurrRegister")
+     * @Method("POST")
+     */
+    public function deleteCurrAction($id)
+    {
+        $register = $this->getDoctrine()->getRepository('UserBundle:Currentattendance')->findOneBy(array('id'=>$id));
+        if (!$register) {
+            return new Response("Not found user");
+        } else {
+            $em=$this->getDoctrine()->getManager();
+            $em->remove($register);
+            $em->flush();
+
+            return $this->redirectToRoute('currentPage');
+        }
     }
 
 }

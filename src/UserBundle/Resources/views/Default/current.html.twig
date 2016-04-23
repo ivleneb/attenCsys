@@ -14,7 +14,7 @@
 <div class="container">
 	<div class="col-md-12">
 		<div class="page-header margin-none">
-			<h2 class="padding-none">Users</h2>
+			<h2 class="padding-none">Current Records</h2>
 		</div>
 		<div class="table-responsive">
 			<table class="table table-striped table-hover">
@@ -38,16 +38,12 @@
 								{% endif %}
 							</td>
 							<td>
-								{#{% if user.role == 'ROLE_ADMIN' %}
-									<strong>Administartor</strong>
-								{% elseif user.role == 'ROLE_USER' %}
-									<strong>User</strong>
-								{% endif %}#}
-							<td>
 								<a href="#" class="btn btn-sm btn-info">View</a>
 								{% if is_granted('ROLE_ADMIN') %}
 								<a href="#" class="btn btn-sm btn-primary">Edit</a>
-								<a href="#" class="btn btn-sm btn-danger btn-delete">Delete</a>
+								<form action="{{ path('deleteCurrRegister', {'id':register.id}) }}" method="POST" style="display: inline-block">
+									<input type="submit" value="Delete" class="btn btn-sm btn-danger btn-delete" onclick="return confirm('Are you sure to delete this register?')"></input>
+								</form>
 								{% endif %}
 							</td>
 						</tr>
