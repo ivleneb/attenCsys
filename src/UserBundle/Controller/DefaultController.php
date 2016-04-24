@@ -57,44 +57,11 @@ class DefaultController extends Controller
         		$newReg->setDepart($currentAtt->getCurrentdepart());
 
                 $diff = date_diff($newReg->getDepart(), $newReg->getEntry());
-                /*$diffMin = ($diff->h)*60+($diff->i); 
-
-                $entryH = intval($newReg->getEntry()->format('%h'));
-                $entryM = intval($newReg->getEntry()->format('%i'));
-                $departH = intval($newReg->getDepart()->format('%h'));
-                $departM = intval($newReg->getDepart()->format('%i'));*/
 
                 $newReg->setDifference($diff->format('%h:%i')); 
                     
         		$em->persist($newReg);
         		$em->flush();
-
-               /* if (($diffMin > 7*60+20) or ($diffMin < 3*60-5) or (($entryH*60+$entryM)>12*60 and ($entryH*60+$entryM)<14*60)) {
-                    
-                    $message = \Swift_Message::newInstance()
-                        ->setSubject('Alert: POSSIBLE ATTENDANCE INFRACTION')
-                        ->setFrom('info@waposat.com')
-                        ->setTo('beenelvi.godoy@gmail.com')
-                        ->setBody(
-                            $this->renderView(
-                            'UserBundle:Emails:alert.html.twig',
-                            array('registerAlert' => $newReg)
-                            ),
-                            'text/html'
-                        )
-                        ;
-                    $this->get('mailer')->send($message);                    
-
-
-                    /*if ($diffMin > 7*60+20) {
-                        $saludo = $saludo." mayor q 7";
-                    } elseif ( $diffMin < 3*60-5) {
-                        $saludo = $saludo." menor q 3";
-                    } elseif (($entryH*60+$entryM)>12*60 and ($entryH*60+$entryM)<14*60) {
-                        $saludo  = "aaa";
-                    } */
-                //}
-
                
         		$currentAtt->setCurrententry($time);
         		$currentAtt->setCurrentdepart(NULL);

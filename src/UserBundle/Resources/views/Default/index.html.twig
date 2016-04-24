@@ -25,11 +25,43 @@
 		<h2>About WAPOSAT Attendance System</h2>
  		<article>
  			<h3>How to use the System</h3>
- 			<ul>
- 				<li>Mark your attendance</li>
- 				<li>Verify your attendance</li>
- 				<li>LECTORUINO</li>
- 				<li>Some CONSIDERATIONS of the system</li>
+ 			<ul class="list-unstyled">
+ 				<li><a href="javascript:hideshow(document.getElementById('mark'))"><h4>Mark your attendance</h4></a></li>
+ 				<p id="mark" style="display: none;"><br>All you need to do is pass your TAG (RFID card) over LECTORUINO cover (red light of led inside of LECTORUINO indicates the cover), then wait 3 or 5 seconds until lights the led indicator. And that is all!<br><br>Now, the light of the led indicator may be GREEN, BLUE or RED. GREEN indicates an entry to the office, BLUE indicates a depart from the office and RED means that some problem has ocurred and your attendance is not registered.<br><br>In RED case you should pass again your TAG in order to have a BLUE or GREEN light (depending if you are entering or departing). If the RED light persist you must report to the supervisor and wait his indications.<br><br>If no light is presented you must repeat this instructions (RED case) until you have the rigth color light.<br><br></p>
+ 				<li><a href="javascript:hideshow(document.getElementById('verify'))"><h4>Verify your attendance</h4></a></li>
+ 				<p id="verify" style="display: none;"><br>To verify your attendance you can visit asistencias.waposat.com and log in with you user account and check the 'Registros ahora' page.<br><br>If you has marked an entry the 'entry time' field should be filled and the 'depart time' field should be void. Then this register should be completed whenever you mark your depart.<br><br>If you note some error (e.g. depart and entry fields are both filled when you mark en entry or just entry field is filled when you mark a depart) you must report to the supervisor and wait his indications.<br><br></p> 
+ 				<li><a href="javascript:hideshow(document.getElementById('consid')), hideshow(document.getElementById('err')), hideshow(document.getElementById('prac')) "><h4>Some CONSIDERATIONS and USEFUL practices</h4></a></li>
+ 				<p id="consid" style="display: none;">The Attendance System is vulnerable to bad use for the user (forgot to mark some entry or depart), bad internet connection or equipment malfunction that results in information lost that can be traduce in non mark attendance register or erroneous 'worked time'.<br><br></p>
+ 					<ul id="prac" class="list-unstyled" style="display: none;">
+ 						In order to avoid these problems you should be consider the next good practices:
+ 						<li>1)Allways verify that the LECTORUINO show you the right LED color, if not, <strong>inmediatly passes your TAG again</strong> until you get the right color</li>
+ 						<li>2)Mark your entry and depart when you go to lunch or dinner</li>
+ 						<li>3)Notify to the supervisor if you forgot to mark some entry or depart and you remember it long time after you should marked it.<br><br></li>
+ 					</ul>
+ 					<ul id="err" class="list-unstyled" style="display: none;">
+ 						The Attendance systems is able to recognize and notify 2 attendance <strong>errors</strong> in the 'todos los registros' page. There are:<br>
+ 						<li>a)The 'worked hours' (i.e. difference between entry and depart time) are less than 3 hours or greater than 7 hours. It consider some delay time. This is not mean that nobody must work more than 7 hours, it means that no body must work 7 hours consecutebly without any break.<br></li>
+						<li>b)An entry is registered between the 12:00 and 13:00 hrs. This represent a possible error because this interval represent lunch time and an entry could really be a depart that somebody forgot to mark.<br><br></li>	
+ 					</ul>
+ 				
+ 				<li><a href="javascript:hideshow(document.getElementById('reg'))"><h4>Regulations and Penalties</h4></a></li>
+ 				<ul id="reg"  class="list-unstyled" style="display: none;">
+ 					<li>1)The user is 100% responsible of mark, verify and notify for a correction of all attendance register<br></li>
+					<li>2)La “salida a almorzar” y el “regreso de almuerzo” se consideran respectivamente como SALIDA e INGRESO y por lo tanto deben ser registrados con su Tag, en caso de omisión se producirá un reajuste del sistema.<br><li>
+					<li>3)El registro de asistencia se realiza mediante la Tag y el arduino-lector(lectoruino). El registro se considerará INGRESO o SALIDA de acuerdo al último registro marcado y/o a cada caso particular de falla y reajuste del sistema previo informe al supervisor.<br></li>
+					<li>4)Fallas y Reajustes:
+						<ul>
+							<li>CASO “Olvide marcar entrada”: Se actualiza manualmente el sistema al horario de entrada que el usuario indique. A partir de la segunda ocurrencia de la semana el usuario deberá marcar su asistencia en el momento que lo recuerde. El tiempo no registrado será responsabilidad del usuario.<br></li>
+							<li>CASO “Olvide marcar salida”: Se actualiza el sistema al horario de salida que el usuario indique. A partir de la segunda ocurrencia de la semana no se considerará las horas trabajadas desde la última entrada registrada por el sistema.<br></li>
+							<li>CASO “Olvide marcar entrada y salida”: No se considerará hora de trabajo alguno, se considera inasistencia por defecto en caso no se registre algún INGRESO o SALIDA durante el día.<br></li>
+							<li>CASO “Olvide marcar salida a almuerzo pero si marque regreso de almuerzo”: Será corregido si es notificado al supervisor antes de que acabe la jornada del día. Si no es notificado al supervisor se corregirá el sistema considerando las horas trabajadas menos 2 horas que se considerarán de almuerzo.<br></li>
+							<li>CASO “Olvide marcar regreso de almuerzo pero si marque salida a almuerzo”: Será corregido si es notificado al supervisor antes de que acabe la jornada del día. Si no es notificado al supervisor se corregirá el sistema considerando las horas trabajadas menos 2 horas que se considerarán de almuerzo.<br></li>
+							<li>CASO “Olvide marcar salida a almuerzo y regreso de almuerzo ”: Será corregido si es notificado al supervisor antes de que acabe la jornada del día. Si no es notificado al supervisor se corregirá el sistema considerando las horas trabajadas menos 3 horas que se considerarán de almuerzo.<br><br></li>
+						</ul>
+					</li>
+ 				</ul>
+ 				<li><a href="javascript:hideshow(document.getElementById('lect'))"><h4>LECTORUINO</h4></a></li>
+ 				<p id="lect" style="display: none;"><br>The LECTORUINO is low cost mark attendance device, it detects a TAG, reads the TAG and sends the information to the company server where the attendance app is hosted.<br><br>The LECTORUINO is based in the RFID and Arduino's technology and was develop with an Arduino I module, a MIFARE target (MFRC522), an Ethernet Arduino Shield and a RGB LED indicator.<br><br>These modules are inside of white PVC box and the RGB led indicator is on the up side of the box connected with the modules by cables through a hole in the box<br><br></p>
  			</ul>
  		</article>
 	</section>
@@ -46,6 +78,16 @@
 		</figure>
 	</aside>
 	<footer>
-   		<p>©2016 BGL soft inc.</p>
+   		<p>©2016 BGLsoft inc.</p>
 	</footer>
+	<script type="text/javascript">
+		function hideshow(which){
+			if (!document.getElementById)
+			return
+			if (which.style.display=="block")
+			which.style.display="none"
+			else
+			which.style.display="block"
+		}
+	</script>
 {% endblock %}
