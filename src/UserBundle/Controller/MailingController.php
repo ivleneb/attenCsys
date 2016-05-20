@@ -23,7 +23,7 @@
 		{
 			$message = \Swift_Message::newInstance()
 		        ->setSubject('Hello Email')
-		        ->setFrom('send@example.com')
+		        ->setFrom('juan.basilio@waposat.com')
 		        ->setTo('beenelvi.godoy@gmail.com')
 		        ->setBody(
 		            $this->renderView(
