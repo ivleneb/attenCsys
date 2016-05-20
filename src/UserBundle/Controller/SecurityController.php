@@ -23,8 +23,7 @@
 		    // last username entered by the user
 		    $lastUsername = $authenticationUtils->getLastUsername();
 
-		    $request->getSession()->getFlashBag()->add('success', 'Welcome to the Death Star, have a magical day!')
-    ;
+		    $request->getSession()->getFlashBag()->add('success', 'Welcome to the Death Star, have a magical day!');
 
 		    return $this->render(
 		        'UserBundle:security:login.html.twig',

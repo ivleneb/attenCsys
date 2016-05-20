@@ -5,8 +5,8 @@ parameters:
     database_name: attendanceSys
     database_user: root
     database_password: Waposat1_UNI
-    mailer_transport: smtp
-    mailer_host: mx1.hostinger.es
-    mailer_user: asistenciawaposat@shacope.esy.es
-    mailer_password: initec123
+    mailer_transport: gmail
+    #mailer_host: mx1.hostinger.es
+    mailer_user: beenelvi.godoy@gmail.com
+    mailer_password: 993298589bboy
     secret: 296fca602912e61fbec2eec8e4fc21fe9f597a3b

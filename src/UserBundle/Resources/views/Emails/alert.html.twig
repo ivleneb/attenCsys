@@ -23,25 +23,7 @@
 						<th>Difference</th>
 					</tr>
 				</thead>
-				<tbody>
-					{% for register in registerAlert %}
-						<tr>
-							<td>{{ register.username }}</td>
-							<td>{{ register.name }}</td>
-							<td>{{ register.email }}</td>
-							<td>{{ register.entry|date('d-m-Y H:i') }}</td>
-							<td>{{ register.depart|date('d-m-Y H:i') }}</td>
-							<td>{{ register.difference }}</td>
-							<td>
-								<a href="#" class="btn btn-sm btn-info">View</a>
-								{% if is_granted('ROLE_ADMIN') %}
-								<a href="#" class="btn btn-sm btn-primary">Edit</a>
-								<a href="#" class="btn btn-sm btn-danger btn-delete">Delete</a>
-								{% endif %}
-							</td>
-						</tr>
-					{% endfor %}
-				</tbody>
+				
 			</table>
 		</div>
 	</div>
